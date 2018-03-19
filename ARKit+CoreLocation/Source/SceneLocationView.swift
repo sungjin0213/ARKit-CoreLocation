@@ -45,6 +45,7 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
     private static let sceneLimit = 100.0
     
     public weak var locationDelegate: SceneLocationViewDelegate?
+    public weak var sessionObserver: ARSessionObserver? // expose sessionObserver protocol
     
     ///The method to use for determining locations.
     ///Not advisable to change this as the scene is ongoing.
@@ -462,16 +463,21 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
         }
     }
     
+    //MARK: ARSessionObserver delegate
+    
     public func sessionWasInterrupted(_ session: ARSession) {
         print("session was interrupted")
+        sessionObserver?.sessionWasInterrupted?(session)
     }
     
     public func sessionInterruptionEnded(_ session: ARSession) {
         print("session interruption ended")
+        sessionObserver?.sessionInterruptionEnded?(session)
     }
     
     public func session(_ session: ARSession, didFailWithError error: Error) {
         print("session did fail with error: \(error)")
+        sessionObserver?.session?(session, didFailWithError: error)
     }
     
     public func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
@@ -487,6 +493,7 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
         case .notAvailable:
             print("camera did change tracking state: not available")
         }
+        sessionObserver?.session?(session, cameraDidChangeTrackingState: camera)
     }
 }
 
