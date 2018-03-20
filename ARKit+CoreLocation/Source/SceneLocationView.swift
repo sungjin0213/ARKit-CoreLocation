@@ -466,33 +466,33 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
     //MARK: ARSessionObserver delegate
     
     public func sessionWasInterrupted(_ session: ARSession) {
-        print("session was interrupted")
+//        print("session was interrupted")
         sessionObserver?.sessionWasInterrupted?(session)
     }
     
     public func sessionInterruptionEnded(_ session: ARSession) {
-        print("session interruption ended")
+//        print("session interruption ended")
         sessionObserver?.sessionInterruptionEnded?(session)
     }
     
     public func session(_ session: ARSession, didFailWithError error: Error) {
-        print("session did fail with error: \(error)")
+//        print("session did fail with error: \(error)")
         sessionObserver?.session?(session, didFailWithError: error)
     }
     
     public func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
-        switch camera.trackingState {
-        case .limited(.insufficientFeatures):
-            print("camera did change tracking state: limited, insufficient features")
-        case .limited(.excessiveMotion):
-            print("camera did change tracking state: limited, excessive motion")
-        case .limited(.initializing):
-            print("camera did change tracking state: limited, initializing")
-        case .normal:
-            print("camera did change tracking state: normal")
-        case .notAvailable:
-            print("camera did change tracking state: not available")
-        }
+//        switch camera.trackingState {
+//        case .limited(.insufficientFeatures):
+//            print("camera did change tracking state: limited, insufficient features")
+//        case .limited(.excessiveMotion):
+//            print("camera did change tracking state: limited, excessive motion")
+//        case .limited(.initializing):
+//            print("camera did change tracking state: limited, initializing")
+//        case .normal:
+//            print("camera did change tracking state: normal")
+//        case .notAvailable:
+//            print("camera did change tracking state: not available")
+//        }
         sessionObserver?.session?(session, cameraDidChangeTrackingState: camera)
     }
 }
